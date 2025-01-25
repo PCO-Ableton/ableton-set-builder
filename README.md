@@ -3,7 +3,7 @@
 gzip -cd [set].als > [set].xml
 ```
 
-### Python convertion:
+### Python conversion:
 ```python
 import xmltodict
 xmltodict.parse()    # XML to dictionary

@@ -2,7 +2,80 @@ import xmltodict
 import json
 import os
 import gzip
+from enum import Enum
 from typing import List, Dict, Any
+
+class ColorsDir(Enum):
+    salmon = {id: 0, hex: "#fe9aaa"}
+    frank_orange = {id: 1, hex: "#fea741"}
+    dirty_gold = {id: 2, hex: "#d19d3a"}
+    lemonade = {id: 3, hex: "#f7f58c"}
+    lime = {id: 4, hex: "#c1fc40"}
+    highlighter_green = {id: 5, hex: "#2dfe50"}
+    bianchi = {id: 6, hex: "#34feaf"}
+    turquiose = {id: 7, hex: "#65ffea"}
+    sky_blue = {id: 8, hex: "#90c7fc"}
+    sapphire = {id: 9, hex: "#5c86e1"}
+    periwinkle = {id: 10, hex: "#97abfb"}
+    orchid = {id: 11, hex: "#d975e2"}
+    magenta = {id: 12, hex: "#e55ca2"}
+    white = {id: 13, hex: "#ffffff"}
+    fire_hydrant_red = {id: 14, hex: "#fe3e40"}
+    tangerine = {id: 15, hex: "#f76f23"}
+    sand = {id: 16, hex: "#9f7752"}
+    sunshine_yellow = {id: 17, hex: "#fff054"}
+    terminal_green = {id: 18, hex: "#8dff79"}
+    forest = {id: 19, hex: "#42c52e"}
+    tiffany_blue = {id: 20, hex: "#11c2b2"}
+    cyan = {id: 21, hex: "#28e9fd"}
+    cerulean = {id: 22, hex: "#1aa6eb"}
+    united_nations_blue = {id: 23, hex: "#5c86e1"}
+    amethyst = {id: 24, hex: "#8e74e2"}
+    iris = {id: 25, hex: "#ba81c7"}
+    flamingo = {id: 26, hex: "#fe41d1"}
+    aluminium = {id: 27, hex: "#d9d9d9"}
+    terracotta = {id: 28, hex: "#e26f64"}
+    light_salmon = {id: 29, hex: "#fea67e"}
+    whiskey = {id: 30, hex: "#d6b27f"}
+    canary = {id: 31, hex: "#eeffb7"}
+    primrose = {id: 32, hex: "#d6e6a6"}
+    wild_willow = {id: 33, hex: "#bfd383"}
+    dark_sea_green = {id: 34, hex: "#a4c99a"}
+    honeydew = {id: 35, hex: "#d9fde5"}
+    pale_turquiose = {id: 36, hex: "#d2f3f9"}
+    light_periwinkle = {id: 37, hex: "#c2c9e6"}
+    fog = {id: 38, hex: "#d3c4e5"}
+    dull_lavender = {id: 39, hex: "#b5a1e4"}
+    whisper = {id: 40, hex: "#eae3e7"}
+    silver_chalice = {id: 41, hex: "#b3b3b3"}
+    dusty_pink = {id: 42, hex: "#cb9b96"}
+    barley_corn = {id: 43, hex: "#bb8862"}
+    pale_oyster = {id: 44, hex: "#9f8a75"}
+    dark_khaki = {id: 45, hex: "#c3be78"}
+    pistachio = {id: 46, hex: "#a9c12f"}
+    dollar_bill = {id: 47, hex: "#84b45d"}
+    neptune = {id: 48, hex: "#93c7c0"}
+    nepal = {id: 49, hex: "#a5bbc9"}
+    polo_blue = {id: 50, hex: "#8facc5"}
+    vista_blue = {id: 51, hex: "#8d9ccd"}
+    amethyst_smoke = {id: 52, hex: "#ae9fbb"}
+    lilac = {id: 53, hex: "#c6a9c4"}
+    turkish_rose = {id: 54, hex: "#bf7a9c"}
+    steel = {id: 55, hex: "#838383"}
+    medium_carmine = {id: 56, hex: "#b53637"}
+    red_orche = {id: 57, hex: "#ae5437"}
+    coffee = {id: 58, hex: "#775345"}
+    durian_yellow = {id: 59, hex: "#dec633"}
+    pomelo_green = {id: 60, hex: "#899b31"}
+    apple = {id: 61, hex: "#57a53f"}
+    aquamarine = {id: 62, hex: "#139f91"}
+    sea_blue = {id: 63, hex: "#256686"}
+    cosmic_cobalt = {id: 64, hex: "#1a3096"}
+    dark_sapphire = {id: 65, hex: "#3155a4"}
+    plump_purple = {id: 66, hex: "#6751ae"}
+    purpureus = {id: 67, hex: "#a752af"}
+    fuchsia_rose = {id: 68, hex: "#ce3571"}
+    eclipse = {id: 69, hex: "#3f3f3f"}
 
 class AbletonSetBuilder:
     def __init__(self, template_path: str):

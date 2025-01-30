@@ -9,3 +9,6 @@ ehthumbs.db
 Thumbs.db
 
 output
+# Python generated files #
+##########################
+__pycache__

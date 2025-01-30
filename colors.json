@@ -1,0 +1,352 @@
+[
+  {
+    "Name": "salmon",
+    "Color": "0",
+    "Hex": "#fe9aaa"
+  },
+  {
+    "Name": "frank orange",
+    "Color": "1",
+    "Hex": "#fea741"
+  },
+  {
+    "Name": "dirty gold",
+    "Color": "2",
+    "Hex": "#d19d3a"
+  },
+  {
+    "Name": "lemonade",
+    "Color": "3",
+    "Hex": "#f7f58c"
+  },
+  {
+    "Name": "lime",
+    "Color": "4",
+    "Hex": "#c1fc40"
+  },
+  {
+    "Name": "highlighter green",
+    "Color": "5",
+    "Hex": "#2dfe50"
+  },
+  {
+    "Name": "bianchi",
+    "Color": "6",
+    "Hex": "#34feaf"
+  },
+  {
+    "Name": "turquiose",
+    "Color": "7",
+    "Hex": "#65ffea"
+  },
+  {
+    "Name": "sky blue",
+    "Color": "8",
+    "Hex": "#90c7fc"
+  },
+  {
+    "Name": "sapphire",
+    "Color": "9",
+    "Hex": "#5c86e1"
+  },
+  {
+    "Name": "periwinkle",
+    "Color": "10",
+    "Hex": "#97abfb"
+  },
+  {
+    "Name": "orchid",
+    "Color": "11",
+    "Hex": "#d975e2"
+  },
+  {
+    "Name": "magenta",
+    "Color": "12",
+    "Hex": "#e55ca2"
+  },
+  {
+    "Name": "white",
+    "Color": "13",
+    "Hex": "#ffffff"
+  },
+  {
+    "Name": "fire hydrant red",
+    "Color": "14",
+    "Hex": "#fe3e40"
+  },
+  {
+    "Name": "tangerine",
+    "Color": "15",
+    "Hex": "#f76f23"
+  },
+  {
+    "Name": "sand",
+    "Color": "16",
+    "Hex": "#9f7752"
+  },
+  {
+    "Name": "sunshine yellow",
+    "Color": "17",
+    "Hex": "#fff054"
+  },
+  {
+    "Name": "terminal green",
+    "Color": "18",
+    "Hex": "#8dff79"
+  },
+  {
+    "Name": "forest",
+    "Color": "19",
+    "Hex": "#42c52e"
+  },
+  {
+    "Name": "tiffany blue",
+    "Color": "20",
+    "Hex": "#11c2b2"
+  },
+  {
+    "Name": "cyan",
+    "Color": "21",
+    "Hex": "#28e9fd"
+  },
+  {
+    "Name": "cerulean",
+    "Color": "22",
+    "Hex": "#1aa6eb"
+  },
+  {
+    "Name": "united nations blue",
+    "Color": "23",
+    "Hex": "#5c86e1"
+  },
+  {
+    "Name": "amethyst",
+    "Color": "24",
+    "Hex": "#8e74e2"
+  },
+  {
+    "Name": "iris",
+    "Color": "25",
+    "Hex": "#ba81c7"
+  },
+  {
+    "Name": "flamingo",
+    "Color": "26",
+    "Hex": "#fe41d1"
+  },
+  {
+    "Name": "aluminium",
+    "Color": "27",
+    "Hex": "#d9d9d9"
+  },
+  {
+    "Name": "terracotta",
+    "Color": "28",
+    "Hex": "#e26f64"
+  },
+  {
+    "Name": "light salmon",
+    "Color": "29",
+    "Hex": "#fea67e"
+  },
+  {
+    "Name": "whiskey",
+    "Color": "30",
+    "Hex": "#d6b27f"
+  },
+  {
+    "Name": "canary",
+    "Color": "31",
+    "Hex": "#eeffb7"
+  },
+  {
+    "Name": "primrose",
+    "Color": "32",
+    "Hex": "#d6e6a6"
+  },
+  {
+    "Name": "wild willow",
+    "Color": "33",
+    "Hex": "#bfd383"
+  },
+  {
+    "Name": "dark sea green",
+    "Color": "34",
+    "Hex": "#a4c99a"
+  },
+  {
+    "Name": "honeydew",
+    "Color": "35",
+    "Hex": "#d9fde5"
+  },
+  {
+    "Name": "pale turquiose",
+    "Color": "36",
+    "Hex": "#d2f3f9"
+  },
+  {
+    "Name": "light periwinkle",
+    "Color": "37",
+    "Hex": "#c2c9e6"
+  },
+  {
+    "Name": "fog",
+    "Color": "38",
+    "Hex": "#d3c4e5"
+  },
+  {
+    "Name": "dull lavender",
+    "Color": "39",
+    "Hex": "#b5a1e4"
+  },
+  {
+    "Name": "whisper",
+    "Color": "40",
+    "Hex": "#eae3e7"
+  },
+  {
+    "Name": "silver chalice",
+    "Color": "41",
+    "Hex": "#b3b3b3"
+  },
+  {
+    "Name": "dusty pink",
+    "Color": "42",
+    "Hex": "#cb9b96"
+  },
+  {
+    "Name": "barley corn",
+    "Color": "43",
+    "Hex": "#bb8862"
+  },
+  {
+    "Name": "pale oyster",
+    "Color": "44",
+    "Hex": "#9f8a75"
+  },
+  {
+    "Name": "dark khaki",
+    "Color": "45",
+    "Hex": "#c3be78"
+  },
+  {
+    "Name": "pistachio",
+    "Color": "46",
+    "Hex": "#a9c12f"
+  },
+  {
+    "Name": "dollar bill",
+    "Color": "47",
+    "Hex": "#84b45d"
+  },
+  {
+    "Name": "neptune",
+    "Color": "48",
+    "Hex": "#93c7c0"
+  },
+  {
+    "Name": "nepal",
+    "Color": "49",
+    "Hex": "#a5bbc9"
+  },
+  {
+    "Name": "polo blue",
+    "Color": "50",
+    "Hex": "#8facc5"
+  },
+  {
+    "Name": "vista blue",
+    "Color": "51",
+    "Hex": "#8d9ccd"
+  },
+  {
+    "Name": "amethyst smoke",
+    "Color": "52",
+    "Hex": "#ae9fbb"
+  },
+  {
+    "Name": "lilac",
+    "Color": "53",
+    "Hex": "#c6a9c4"
+  },
+  {
+    "Name": "turkish rose",
+    "Color": "54",
+    "Hex": "#bf7a9c"
+  },
+  {
+    "Name": "steel",
+    "Color": "55",
+    "Hex": "#838383"
+  },
+  {
+    "Name": "medium carmine",
+    "Color": "56",
+    "Hex": "#b53637"
+  },
+  {
+    "Name": "red orche",
+    "Color": "57",
+    "Hex": "#ae5437"
+  },
+  {
+    "Name": "coffee",
+    "Color": "58",
+    "Hex": "#775345"
+  },
+  {
+    "Name": "durian yellow",
+    "Color": "59",
+    "Hex": "#dec633"
+  },
+  {
+    "Name": "pomelo green",
+    "Color": "60",
+    "Hex": "#899b31"
+  },
+  {
+    "Name": "apple",
+    "Color": "61",
+    "Hex": "#57a53f"
+  },
+  {
+    "Name": "aquamarine",
+    "Color": "62",
+    "Hex": "#139f91"
+  },
+  {
+    "Name": "sea blue",
+    "Color": "63",
+    "Hex": "#256686"
+  },
+  {
+    "Name": "cosmic cobalt",
+    "Color": "64",
+    "Hex": "#1a3096"
+  },
+  {
+    "Name": "dark sapphire",
+    "Color": "65",
+    "Hex": "#3155a4"
+  },
+  {
+    "Name": "plump purple",
+    "Color": "66",
+    "Hex": "#6751ae"
+  },
+  {
+    "Name": "purpureus",
+    "Color": "67",
+    "Hex": "#a752af"
+  },
+  {
+    "Name": "fuchsia rose",
+    "Color": "68",
+    "Hex": "#ce3571"
+  },
+  {
+    "Name": "eclipse",
+    "Color": "69",
+    "Hex": "#3f3f3f"
+  }
+]

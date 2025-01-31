@@ -12,7 +12,14 @@ def time_signature_to_id(time_signature):
         return 203
     else:
         return 201
-
+    
+# Lambda function input format (POST):
+lambda_input = { 
+    "name": "string", 
+    "bpm": 120, 
+    "measure": "4/4", 
+    "color": 13
+}
 
 def lambda_handler(event, context):
     try:
@@ -64,7 +71,7 @@ def lambda_handler(event, context):
             
         # check if body has the required keys: name (string), bpm (int), measure (string)
         for item in body:
-            if 'name' not in item or 'bpm' not in item or 'measure' not in item:
+            if lambda_input.keys() != item.keys():
                 return {
                     'statusCode': 400,
                     'body': json.dumps({
@@ -72,13 +79,15 @@ def lambda_handler(event, context):
                     })
                 }
             
-            if not isinstance(item['name'], str) or not isinstance(item['bpm'], int) or not isinstance(item['measure'], str):
-                return {
-                    'statusCode': 400,
-                    'body': json.dumps({
-                        "message": "body has wrong types",
-                    })
-                }
+            for key, tif in lambda_input.items():
+                print(key, tif)
+                if not isinstance(item[key], type(tif)):
+                    return {
+                        'statusCode': 400,
+                        'body': json.dumps({
+                            "message": "body has wrong types",
+                        })
+                    }
         
         # all checks passed, lets create some ableton files
 
@@ -104,7 +113,7 @@ def lambda_handler(event, context):
             )
         
         # Build the new Ableton Live set
-        xml = builder.build_als('./output/new-live-set.als')
+        xml = builder.to_xml()
 
         message_bytes = xml.encode("utf-8")
         base64_bytes = base64.b64encode(message_bytes)

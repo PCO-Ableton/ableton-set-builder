@@ -1,18 +1,3 @@
-# OS generated files #
-######################
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
-
-output
-# Python generated files #
-##########################
-__pycache__
-
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

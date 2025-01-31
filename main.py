@@ -14,7 +14,7 @@ def main():
     builder.add_template_scene(4, "Jezus overwinaar", color=13, tempo=128)
     
     # Build the new Ableton Live set
-    builder.build_als('./output/new-live-set.als')
+    builder.build_als('./new-live-set.als')
 
     print("Ableton Live set created successfully!")
 

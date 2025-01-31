@@ -1,5 +1,4 @@
 import xmltodict
-import json
 import os
 import gzip
 from enum import Enum

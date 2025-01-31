@@ -107,7 +107,7 @@ def lambda_handler(event, context):
             builder.add_scene(
                 i+1, 
                 item['name'], 
-                color=13, 
+                color=item['color'], 
                 tempo=item['bpm'], 
                 time_signature_id=time_signature_to_id(item["measure"])
             )

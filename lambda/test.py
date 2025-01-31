@@ -2,7 +2,7 @@
 import json
 import os
 
-from lamda_function import lambda_handler
+from lambda_function import lambda_handler
 
 if __name__ == "__main__":
     script_dir = os.path.dirname(__file__) #<-- absolute dir the script is in

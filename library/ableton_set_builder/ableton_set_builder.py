@@ -3,6 +3,8 @@ import os
 import gzip
 from enum import Enum
 from typing import List, Dict, Any
+import io
+
 
 class ColorsDir(Enum):
     salmon = 0
@@ -219,15 +221,25 @@ class AbletonSetBuilder:
         for midi_track in self.midi_tracks:
             self.clear_track(midi_track)
 
-    def build_als(self, output_path: str):
+    def to_file(self, output_path: str):
         xml_path = os.path.splitext(output_path)[0] + '.xml'
         with open(xml_path, 'w') as f:
             xmltodict.unparse(self.doc, output=f, pretty=True)
         os.rename(xml_path, output_path)
+    
+    def to_xml(self):
+        return xmltodict.unparse(self.doc, pretty=True)
+    
+    def to_gzip_buffer(self):
+        with io.BytesIO() as f:
+            with gzip.GzipFile(fileobj=f, mode='w') as gz:
+                gz.write(self.to_xml().encode())
+            return f.getvalue()
+        
 
 # Example usage
 if __name__ == "__main__":
     builder = AbletonSetBuilder('test.xml')
     builder.add_scene(1, "Scene 1", color=5, tempo=125)
     builder.add_template_scene(1, "Template Scene", color=9, tempo=130)
-    builder.build_als('./output/new-live-set-v2.als')
+    builder.to_file('./output/new-live-set-v2.als')

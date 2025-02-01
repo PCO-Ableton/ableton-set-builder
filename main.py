@@ -1,4 +1,4 @@
-from ableton_set_builder import AbletonSetBuilder
+from library.ableton_set_builder.ableton_set_builder import AbletonSetBuilder
 
 def main():
     # Create an instance of AbletonSetBuilder with the template XML or ALS file
@@ -14,7 +14,11 @@ def main():
     builder.add_template_scene(4, "Jezus overwinaar", color=13, tempo=128)
     
     # Build the new Ableton Live set
-    builder.build_als('./output/new-live-set.als')
+    file = builder.to_gzip_buffer()
+    
+    # Save the new Ableton Live set to a file
+    with open('./new-live-set.als', 'wb') as f:
+        f.write(file)
 
     print("Ableton Live set created successfully!")
 

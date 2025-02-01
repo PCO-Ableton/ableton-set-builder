@@ -79,23 +79,23 @@ class ColorsDir(Enum):
 
 class AbletonSetBuilder:
     def __init__(self, template_path: str):
-        self.load_template(template_path)
+        self.doc = self.load_set(template_path)
         self.tracks = self.doc["Ableton"]["LiveSet"]["Tracks"]
         self.audio_tracks: List[Dict[str, Any]] = []
         self.midi_tracks: List[Dict[str, Any]] = []
         self.audio_tracks_first_clips: List[Dict[str, Any]] = []
         self.midi_tracks_first_clips: List[Dict[str, Any]] = []
         self.master_track = self.doc["Ableton"]["LiveSet"]["MasterTrack"]
-        
+
         self.initialize_tracks()
 
-    def load_template(self, template_path: str):
-        if os.path.splitext(template_path)[1] == '.als':
-            with gzip.open(template_path, 'rb') as f:
-                self.doc = xmltodict.parse(f.read())
-        elif os.path.splitext(template_path)[1] == '.xml':
-            with open(template_path) as fd:
-                self.doc = xmltodict.parse(fd.read())
+    def load_set(self, path: str):
+        if os.path.splitext(path)[1] == '.als':
+            with gzip.open(path, 'rb') as f:
+                return xmltodict.parse(f.read())
+        elif os.path.splitext(path)[1] == '.xml':
+            with open(path) as fd:
+                return xmltodict.parse(fd.read())
         else:
             raise ValueError("Invalid file format. Please provide an .als or .xml file.")
 
@@ -105,18 +105,18 @@ class AbletonSetBuilder:
             self.audio_tracks = self.tracks["AudioTrack"]
         else:
             self.audio_tracks = [self.tracks["AudioTrack"]]
-        
+
         # Handle MIDI tracks
         if isinstance(self.tracks["MidiTrack"], list):
             self.midi_tracks = self.tracks["MidiTrack"]
         else:
             self.midi_tracks = [self.tracks["MidiTrack"]]
-        
+
         # Get first clips for audio and MIDI tracks
         for audio_track in self.audio_tracks:
             audio_track_first_clip = audio_track["DeviceChain"]["MainSequencer"]["ClipSlotList"]["ClipSlot"]
             self.audio_tracks_first_clips.append(audio_track_first_clip)
-        
+
         for midi_track in self.midi_tracks:
             midi_track_first_clip = midi_track["DeviceChain"]["MainSequencer"]["ClipSlotList"]["ClipSlot"]
             self.midi_tracks_first_clips.append(midi_track_first_clip)
@@ -173,7 +173,7 @@ class AbletonSetBuilder:
         # check if clip is not a list:
         if not isinstance(track["DeviceChain"]["MainSequencer"]["ClipSlotList"]["ClipSlot"], list):
             track["DeviceChain"]["MainSequencer"]["ClipSlotList"]["ClipSlot"] = [track["DeviceChain"]["MainSequencer"]["ClipSlotList"]["ClipSlot"]]
-        
+
         if not isinstance(track["DeviceChain"]["FreezeSequencer"]["ClipSlotList"]["ClipSlot"], list):
             track["DeviceChain"]["FreezeSequencer"]["ClipSlotList"]["ClipSlot"] = [track["DeviceChain"]["FreezeSequencer"]["ClipSlotList"]["ClipSlot"]]
         track["DeviceChain"]["MainSequencer"]["ClipSlotList"]["ClipSlot"].append(clip)
@@ -182,7 +182,7 @@ class AbletonSetBuilder:
     def add_scene(self, id: int, name: str, annotation: str = "", color: int = -1, tempo: int = 120, time_signature_id: int = 201):
         new_scene = self.create_scene(id, name, annotation, color, tempo, time_signature_id)
         self.doc["Ableton"]["LiveSet"]["Scenes"]["Scene"].append(new_scene)
-        
+
         # Add clip slots to tracks for this scene
         for track in self.audio_tracks + self.midi_tracks:
             self.add_clip_to_track(track, self.create_clip_slot(id, 0, "true", "true"))
@@ -190,35 +190,39 @@ class AbletonSetBuilder:
     def add_template_scene(self, scene_id: int, scene_name: str, color: int = -1, tempo: int = 120):
         # Create a new scene
         new_scene = self.create_scene(scene_id, scene_name, "", color, tempo, 201)
-        
+
         # Add the scene to the scenes list
         if "Scene" not in self.doc["Ableton"]["LiveSet"]["Scenes"]:
             self.doc["Ableton"]["LiveSet"]["Scenes"]["Scene"] = []
         # check if scene is not a list:
         if not isinstance(self.doc["Ableton"]["LiveSet"]["Scenes"]["Scene"], list):
             self.doc["Ableton"]["LiveSet"]["Scenes"]["Scene"] = [self.doc["Ableton"]["LiveSet"]["Scenes"]["Scene"]]
-        
+
         self.doc["Ableton"]["LiveSet"]["Scenes"]["Scene"].append(new_scene)
-        
+
         # Add the first clips of the audio and midi tracks to the scene
         for i, audio_track_first_clip in enumerate(self.audio_tracks_first_clips):
             new_clip = audio_track_first_clip.copy()
             new_clip["@Id"] = str(scene_id)
             self.add_clip_to_track(self.audio_tracks[i], new_clip)
-        
+
         for i, midi_track_first_clip in enumerate(self.midi_tracks_first_clips):
             new_clip = midi_track_first_clip.copy()
             new_clip["@Id"] = str(scene_id)
             self.add_clip_to_track(self.midi_tracks[i], new_clip)
-    
+
     def clearScenes(self):
         self.doc["Ableton"]["LiveSet"]["Scenes"]["Scene"] = []
         # self.clear_track(self.master_track)
-        
+
         for audio_track in self.audio_tracks:
             self.clear_track(audio_track)
         for midi_track in self.midi_tracks:
             self.clear_track(midi_track)
+
+    def import_set(self, import_path: str):
+        doc_import = self.load_set(import_path)
+        return
 
     def build_als(self, output_path: str):
         xml_path = os.path.splitext(output_path)[0] + '.xml'

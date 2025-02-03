@@ -80,7 +80,7 @@ class ColorsDir(Enum):
 
 class AbletonSetBuilder:
     def __init__(self, template_path: str):
-        self.load_template(template_path)
+        self.doc = self.load_set(template_path)
         self.tracks = self.doc["Ableton"]["LiveSet"]["Tracks"]
         self.audio_tracks: List[Dict[str, Any]] = []
         self.midi_tracks: List[Dict[str, Any]] = []
@@ -89,14 +89,14 @@ class AbletonSetBuilder:
         self.master_track = self.doc["Ableton"]["LiveSet"]["MasterTrack"]
         
         self.initialize_tracks()
-
-    def load_template(self, template_path: str):
-        if os.path.splitext(template_path)[1] == '.als':
-            with gzip.open(template_path, 'rb') as f:
-                self.doc = xmltodict.parse(f.read())
-        elif os.path.splitext(template_path)[1] == '.xml':
-            with open(template_path) as fd:
-                self.doc = xmltodict.parse(fd.read())
+        
+    def load_set(self, path: str):
+        if os.path.splitext(path)[1] == '.als':
+            with gzip.open(path, 'rb') as f:
+                return xmltodict.parse(f.read())
+        elif os.path.splitext(path)[1] == '.xml':
+            with open(path) as fd:
+                return xmltodict.parse(fd.read())
         else:
             raise ValueError("Invalid file format. Please provide an .als or .xml file.")
 
@@ -226,7 +226,7 @@ class AbletonSetBuilder:
         with open(xml_path, 'w') as f:
             xmltodict.unparse(self.doc, output=f, pretty=True)
         os.rename(xml_path, output_path)
-    
+
     def to_xml(self):
         return xmltodict.unparse(self.doc, pretty=True)
     

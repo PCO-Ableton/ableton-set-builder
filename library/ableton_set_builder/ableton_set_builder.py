@@ -4,7 +4,10 @@ import gzip
 from enum import Enum
 from typing import List, Dict, Any
 import io
+from importlib import resources
+from typing import Literal
 
+_MonitoringTypes = Literal["off", "auto", "in"]
 
 class ColorsDir(Enum):
     salmon = 0
@@ -79,7 +82,9 @@ class ColorsDir(Enum):
     eclipse = 69
 
 class AbletonSetBuilder:
-    def __init__(self, template_path: str):
+    def __init__(self, template_path: str = None):
+        if template_path is None:
+            return
         self.doc = self.load_set(template_path)
         self.tracks = self.doc["Ableton"]["LiveSet"]["Tracks"]
         self.audio_tracks: List[Dict[str, Any]] = []
@@ -100,18 +105,29 @@ class AbletonSetBuilder:
         else:
             raise ValueError("Invalid file format. Please provide an .als or .xml file.")
 
+    @staticmethod
+    def import_template(template: str):
+        with resources.files('ableton_set_builder.templates').joinpath(template).open('r') as fd:
+            return xmltodict.parse(fd.read())
+
     def initialize_tracks(self):
+        if not self.tracks:
+            self.audio_tracks = []
+            self.midi_tracks = []
+            return
         # Handle audio tracks
-        if isinstance(self.tracks["AudioTrack"], list):
-            self.audio_tracks = self.tracks["AudioTrack"]
-        else:
-            self.audio_tracks = [self.tracks["AudioTrack"]]
+        if "AudioTrack" in self.tracks:
+            if isinstance(self.tracks["AudioTrack"], list):
+                self.audio_tracks = self.tracks["AudioTrack"]
+            else:
+                self.audio_tracks = [self.tracks["AudioTrack"]]
 
         # Handle MIDI tracks
-        if isinstance(self.tracks["MidiTrack"], list):
-            self.midi_tracks = self.tracks["MidiTrack"]
-        else:
-            self.midi_tracks = [self.tracks["MidiTrack"]]
+        if "MidiTrack" in self.tracks:
+            if isinstance(self.tracks["MidiTrack"], list):
+                self.midi_tracks = self.tracks["MidiTrack"]
+            else:
+                self.midi_tracks = [self.tracks["MidiTrack"]]
 
         # Get first clips for audio and MIDI tracks
         for audio_track in self.audio_tracks:
@@ -121,6 +137,38 @@ class AbletonSetBuilder:
         for midi_track in self.midi_tracks:
             midi_track_first_clip = midi_track["DeviceChain"]["MainSequencer"]["ClipSlotList"]["ClipSlot"]
             self.midi_tracks_first_clips.append(midi_track_first_clip)
+
+    def create_audio_track(self, name: str, color: str, input: str = "1", output: str = "1", monitoring: _MonitoringTypes = "off", track_height: int = 68):
+        monitoringEnum = {
+            "off": 2,
+            "auto": 1,
+            "in": 0
+        }
+        def parse_io(io):
+            if '/' in input:
+                base = io.split('/')[0]
+                base_num = int(base)
+                io = f"S{int((base_num - 1) / 2)}"
+            else:
+                base_num = int(io)
+                io = f"M{base_num - 1}"
+            return io
+
+        color = ColorsDir[color].value
+        track = self.import_template('audio_track.xml')['AudioTrack']
+        track["@Id"] = len(self.audio_tracks)
+        track["Name"]["EffectiveName"]['@Value'] = name
+        track["Name"]["UserName"]["@Value"] = name
+        track["Color"]["@Value"] = color
+        track["DeviceChain"]["AutomationLanes"]["AutomationLanes"]["AutomationLane"]["LaneHeight"]["@Value"] = track_height
+        track["DeviceChain"]["MainSequencer"]["MonitoringEnum"]["@Value"] = monitoringEnum[monitoring]
+        track["DeviceChain"]["AudioInputRouting"]["Target"]["@Value"] = f"AudioIn/External/{parse_io(input)}"
+        track["DeviceChain"]["AudioInputRouting"]["UpperDisplayString"]["@Value"] = "Ext. In"
+        track["DeviceChain"]["AudioInputRouting"]["LowerDisplayString"]["@Value"] = input
+        track["DeviceChain"]["AudioOutputRouting"]["Target"]["@Value"] = f"AudioOut/External/{parse_io(output)}"
+        track["DeviceChain"]["AudioOutputRouting"]["UpperDisplayString"]["@Value"] = "Ext. Out"
+        track["DeviceChain"]["AudioOutputRouting"]["LowerDisplayString"]["@Value"] = output
+        self.audio_tracks.append(track)
 
     def create_clip_slot(self, id: int, lom_id: int, has_stop: str, need_refreeze: str) -> Dict[str, Any]:
         return {
@@ -225,15 +273,21 @@ class AbletonSetBuilder:
         doc_import = self.load_set(import_path)
         return
 
+    def assemble(self):
+        self.doc["Ableton"]["LiveSet"]["Tracks"] = {}
+        self.doc["Ableton"]["LiveSet"]["Tracks"]["AudioTrack"] = self.audio_tracks
+        return self.doc
+
     def build_als(self, output_path: str):
         xml_path = os.path.splitext(output_path)[0] + '.xml'
         with open(xml_path, 'w') as f:
             xmltodict.unparse(self.doc, output=f, pretty=True)
         os.rename(xml_path, output_path)
-    
+
     def to_xml(self):
-        return xmltodict.unparse(self.doc, pretty=True)
-    
+        assemble = self.assemble()
+        return xmltodict.unparse(assemble, pretty=True)
+
     def to_gzip_buffer(self):
         with io.BytesIO() as f:
             with gzip.GzipFile(fileobj=f, mode='w') as gz:

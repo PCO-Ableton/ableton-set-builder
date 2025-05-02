@@ -4,6 +4,7 @@ setup(
     name='ableton_set_builder',
     version='0.1.0',
     packages=find_packages(),
+    include_package_data=True,
     install_requires=[
         'xmltodict',
     ],

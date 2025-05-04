@@ -279,22 +279,19 @@ class AbletonSetBuilder:
         self.doc["Ableton"]["LiveSet"]["Tracks"]["AudioTrack"] = self.audio_tracks
         return self.doc
 
-    def build_als(self, output_path: str):
-        xml_path = os.path.splitext(output_path)[0] + '.xml'
-        with open(xml_path, 'w') as f:
-            xmltodict.unparse(self.doc, output=f, pretty=True)
-        os.rename(xml_path, output_path)
-
     def to_xml(self):
         assemble = self.assemble()
         return xmltodict.unparse(assemble, pretty=True)
 
-    def to_gzip_buffer(self):
-        with io.BytesIO() as f:
-            with gzip.GzipFile(fileobj=f, mode='w') as gz:
-                gz.write(self.to_xml().encode())
-            return f.getvalue()
-        
+    def build_uncompressed_als(self, output_path: str):
+        path = os.path.splitext(output_path)[0] + '.als'
+        with open(path, "w") as f:
+            f.write(self.to_xml())    
+
+    def build_als(self, output_path: str):
+        path = os.path.splitext(output_path)[0] + ".als"
+        with gzip.open(path, "wb") as gz:
+            gz.write(self.to_xml().encode('utf-8'))
 
 # Example usage
 if __name__ == "__main__":

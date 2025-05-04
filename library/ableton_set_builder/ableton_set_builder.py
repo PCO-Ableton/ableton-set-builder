@@ -91,7 +91,8 @@ class AbletonSetBuilder:
         self.midi_tracks: List[Dict[str, Any]] = []
         self.audio_tracks_first_clips: List[Dict[str, Any]] = []
         self.midi_tracks_first_clips: List[Dict[str, Any]] = []
-        self.master_track = self.doc["Ableton"]["LiveSet"]["MasterTrack"]
+        if "MasterTrack" in self.doc["Ableton"]["LiveSet"]:
+            self.master_track = self.doc["Ableton"]["LiveSet"]["MasterTrack"]
 
         self.initialize_tracks()
 

@@ -292,10 +292,3 @@ class AbletonSetBuilder:
         path = os.path.splitext(output_path)[0] + ".als"
         with gzip.open(path, "wb") as gz:
             gz.write(self.to_xml().encode('utf-8'))
-
-# Example usage
-if __name__ == "__main__":
-    builder = AbletonSetBuilder('test.xml')
-    builder.add_scene(1, "Scene 1", color=5, tempo=125)
-    builder.add_template_scene(1, "Template Scene", color=9, tempo=130)
-    builder.to_file('./output/new-live-set-v2.als')

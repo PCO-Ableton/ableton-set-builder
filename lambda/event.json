@@ -1,0 +1,38 @@
+{
+    "version": "2.0",
+    "routeKey": "ANY /ableton-set-builder",
+    "rawPath": "/default/ableton-set-builder",
+    "rawQueryString": "",
+    "headers": {
+        "baggage": "sentry-environment=production,sentry-release=e6266cc59cb3d310684dedc1863d90984f970d84,sentry-public_key=53fade3064084ef092f9e005bec83766,sentry-trace_id=a20292dbefc4402eaa75c17190d032e3",
+        "content-length": "166",
+        "content-type": "application/json",
+        "host": "7d35mzb1di.execute-api.eu-central-1.amazonaws.com",
+        "user-agent": "HTTPie",
+        "x-amzn-trace-id": "Root=1-679a8870-1a2103890c8af2f54348e346",
+        "x-forwarded-for": "44.220.247.85",
+        "x-forwarded-port": "443",
+        "x-forwarded-proto": "https",
+        "x-vercel-id": "fra1:fra1::xgxw4-1738180720476-9c47ba7c3764"
+    },
+    "requestContext": {
+        "accountId": "135857727701",
+        "apiId": "7d35mzb1di",
+        "domainName": "7d35mzb1di.execute-api.eu-central-1.amazonaws.com",
+        "domainPrefix": "7d35mzb1di",
+        "http": {
+            "method": "POST",
+            "path": "/default/ableton-set-builder",
+            "protocol": "HTTP/1.1",
+            "sourceIp": "44.220.247.85",
+            "userAgent": "HTTPie"
+        },
+        "requestId": "FKpBrjbZFiAEP1Q=",
+        "routeKey": "ANY /ableton-set-builder",
+        "stage": "default",
+        "time": "29/Jan/2025:19:58:40 +0000",
+        "timeEpoch": 1738180720781
+    },
+    "body": "[\n  {\n    \"name\": \"mijn verlosser leeft\",\n    \"bpm\": 105,\n    \"measure\": \"4/4\",\n  \"color\": 12\n},\n  {\n    \"name\": \"mijn verlosser leeft\",\n    \"bpm\": 105,\n    \"measure\": \"3/4\",\n  \"color\": 12\n}\n]",
+    "isBase64Encoded": false
+}

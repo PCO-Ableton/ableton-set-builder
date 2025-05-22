@@ -241,62 +241,6 @@
 					<HasStop Value="true" />
 					<NeedRefreeze Value="true" />
 				</ClipSlot>
-				<ClipSlot Id="1">
-					<LomId Value="0" />
-					<ClipSlot>
-						<Value />
-					</ClipSlot>
-					<HasStop Value="true" />
-					<NeedRefreeze Value="true" />
-				</ClipSlot>
-				<ClipSlot Id="2">
-					<LomId Value="0" />
-					<ClipSlot>
-						<Value />
-					</ClipSlot>
-					<HasStop Value="true" />
-					<NeedRefreeze Value="true" />
-				</ClipSlot>
-				<ClipSlot Id="3">
-					<LomId Value="0" />
-					<ClipSlot>
-						<Value />
-					</ClipSlot>
-					<HasStop Value="true" />
-					<NeedRefreeze Value="true" />
-				</ClipSlot>
-				<ClipSlot Id="4">
-					<LomId Value="0" />
-					<ClipSlot>
-						<Value />
-					</ClipSlot>
-					<HasStop Value="true" />
-					<NeedRefreeze Value="true" />
-				</ClipSlot>
-				<ClipSlot Id="5">
-					<LomId Value="0" />
-					<ClipSlot>
-						<Value />
-					</ClipSlot>
-					<HasStop Value="true" />
-					<NeedRefreeze Value="true" />
-				</ClipSlot>
-				<ClipSlot Id="6">
-					<LomId Value="0" />
-					<ClipSlot>
-						<Value />
-					</ClipSlot>
-					<HasStop Value="true" />
-					<NeedRefreeze Value="true" />
-				</ClipSlot>
-				<ClipSlot Id="7">
-					<LomId Value="0" />
-					<ClipSlot>
-						<Value />
-					</ClipSlot>
-					<HasStop Value="true" />
-					<NeedRefreeze Value="true" />
-				</ClipSlot>
 			</ClipSlotList>
 			<MonitoringEnum Value="2" />
 			<KeepRecordMonitoringLatency Value="true" />
@@ -373,62 +317,6 @@
 			</SourceContext>
 			<ClipSlotList>
 				<ClipSlot Id="0">
-					<LomId Value="0" />
-					<ClipSlot>
-						<Value />
-					</ClipSlot>
-					<HasStop Value="true" />
-					<NeedRefreeze Value="true" />
-				</ClipSlot>
-				<ClipSlot Id="1">
-					<LomId Value="0" />
-					<ClipSlot>
-						<Value />
-					</ClipSlot>
-					<HasStop Value="true" />
-					<NeedRefreeze Value="true" />
-				</ClipSlot>
-				<ClipSlot Id="2">
-					<LomId Value="0" />
-					<ClipSlot>
-						<Value />
-					</ClipSlot>
-					<HasStop Value="true" />
-					<NeedRefreeze Value="true" />
-				</ClipSlot>
-				<ClipSlot Id="3">
-					<LomId Value="0" />
-					<ClipSlot>
-						<Value />
-					</ClipSlot>
-					<HasStop Value="true" />
-					<NeedRefreeze Value="true" />
-				</ClipSlot>
-				<ClipSlot Id="4">
-					<LomId Value="0" />
-					<ClipSlot>
-						<Value />
-					</ClipSlot>
-					<HasStop Value="true" />
-					<NeedRefreeze Value="true" />
-				</ClipSlot>
-				<ClipSlot Id="5">
-					<LomId Value="0" />
-					<ClipSlot>
-						<Value />
-					</ClipSlot>
-					<HasStop Value="true" />
-					<NeedRefreeze Value="true" />
-				</ClipSlot>
-				<ClipSlot Id="6">
-					<LomId Value="0" />
-					<ClipSlot>
-						<Value />
-					</ClipSlot>
-					<HasStop Value="true" />
-					<NeedRefreeze Value="true" />
-				</ClipSlot>
-				<ClipSlot Id="7">
 					<LomId Value="0" />
 					<ClipSlot>
 						<Value />
